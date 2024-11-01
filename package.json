@@ -1,0 +1,11 @@
+{
+  "name": "com.github.uisawara.unitysettingsconfigurator",
+  "version": "0.0.1",
+  "displayName": "UnitySettingsConfigurator",
+  "description": "Tool to define presets and enable switching of project settings",
+  "unity": "2020.1",
+  "author": {
+    "name": "uisawara",
+    "url": "https://github.com/uisawara/UnitySettingsConfigurator"
+  }
+}
