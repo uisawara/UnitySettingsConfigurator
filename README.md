@@ -29,10 +29,10 @@ Unityのプロジェクト設定、BuildSettingsやPlayerSettingsなどは、対
 ### プリセットの準備
 
 - Project Windowで /Assets/Settings/で メニューからCreate -> Build -> Settingsで設定ファイルを作成します。
-  - ![image-20241101135052180](./README.ja.assets/image-20241101135052180.png)
+  - ![image-20241101135052180](./README.assets/image-20241101135052180.png)
 - 設定ファイルに設定を記述します。
 - Unity Editorで Build/Build Configurator を選択してBuild Configurator Windowを表示します。すると定義したBuild Settingsが表示される筈です。
-  - ![image-20241101135231904](./README.ja.assets/image-20241101135231904.png)
+  - ![image-20241101135231904](./README.assets/image-20241101135231904.png)
 - 使いたい設定をクリックするとプレビューが表示されます。
 - "Apply to Current Editor Settings" をクリックすると実際のエディタ設定が一括で切り替わります。
 
