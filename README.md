@@ -1,4 +1,7 @@
-﻿プリセット定義してプロジェクト設定を切替可能にするツール
+﻿プリセット定義してプロジェクト設定を切替可能にするツール for Unity6より以前のバージョン
+
+※Unity6以降では Build Profiles を使うのがよさそうです！
+https://docs.unity3d.com/6000.0/Documentation/Manual/build-profiles.html
 
 # 概要
 
