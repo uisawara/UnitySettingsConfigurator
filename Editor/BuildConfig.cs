@@ -11,7 +11,7 @@ public class BuildConfig : ScriptableObject
     public string bundleIdentifier; // Bundle Identifier 設定
 
     public BuildTarget buildTarget;
-    public string scriptingDefineSymbols; // スクリプト定義シンボル
+    public string[] scriptingDefineSymbols; // スクリプト定義シンボル
     public ScriptingImplementation scriptingBackend; // スクリプティングバックエンド
 
     // LogTypeごとのStackTraceLogType設定

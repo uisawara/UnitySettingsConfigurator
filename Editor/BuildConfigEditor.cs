@@ -45,7 +45,7 @@ public class BuildConfigEditor : EditorWindow
             EditorGUILayout.LabelField("Selected Build Config:");
             EditorGUILayout.LabelField("Build Name", selectedConfig.buildName);
             EditorGUILayout.LabelField("Build Target", selectedConfig.buildTarget.ToString());
-            EditorGUILayout.LabelField("Scripting Define Symbols", selectedConfig.scriptingDefineSymbols);
+            EditorGUILayout.LabelField("Scripting Define Symbols", string.Join(';', selectedConfig.scriptingDefineSymbols));
             EditorGUILayout.LabelField("Scripting Backend", selectedConfig.scriptingBackend.ToString());
 
             // 各LogTypeごとのStackTrace設定を表示
