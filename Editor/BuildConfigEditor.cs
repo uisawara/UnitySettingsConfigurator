@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class BuildConfigEditor : EditorWindow
@@ -44,7 +45,7 @@ public class BuildConfigEditor : EditorWindow
             EditorGUILayout.LabelField("Selected Build Config:");
             EditorGUILayout.LabelField("Build Name", selectedConfig.buildName);
             EditorGUILayout.LabelField("Build Target", selectedConfig.buildTarget.ToString());
-            EditorGUILayout.LabelField("Scripting Define Symbols", selectedConfig.scriptingDefineSymbols);
+            EditorGUILayout.LabelField("Scripting Define Symbols", string.Join(';', selectedConfig.scriptingDefineSymbols));
             EditorGUILayout.LabelField("Scripting Backend", selectedConfig.scriptingBackend.ToString());
 
             // 各LogTypeごとのStackTrace設定を表示
@@ -98,7 +99,8 @@ public class BuildConfigEditor : EditorWindow
         Debug.Log($"Switched build target to: {selectedConfig.buildTarget}");
 
         // シーンの設定を現在のビルド設定に反映
-        EditorBuildSettings.scenes = selectedConfig.GetScenePaths()
+        var scenePaths = selectedConfig.GetScenePaths();
+        EditorBuildSettings.scenes = scenePaths
             .Select(scenePath => new EditorBuildSettingsScene(scenePath, true))
             .ToArray();
         Debug.Log("Applied scenes to build settings");
@@ -121,6 +123,21 @@ public class BuildConfigEditor : EditorWindow
             selectedConfig.bundleIdentifier);
         Debug.Log($"Applied product name: {selectedConfig.productName}");
         Debug.Log($"Applied bundle identifier: {selectedConfig.bundleIdentifier}");
+        
+        // 現在のシーンを保存確認
+        if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
+        {
+            // 最初のシーンは Single ロード（新規開き）
+            var firstScene = EditorSceneManager.OpenScene(scenePaths[0], OpenSceneMode.Single);
+
+            // 残りは Additive（追加でロード）
+            for (int i = 1; i < scenePaths.Length; i++)
+            {
+                EditorSceneManager.OpenScene(scenePaths[i], OpenSceneMode.Additive);
+            }
+
+            Debug.Log("Loaded scenes into Hierarchy");
+        }
     }
 
     private void BuildWithSelectedConfig()
