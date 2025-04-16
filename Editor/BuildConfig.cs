@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,7 +22,7 @@ public class BuildConfig : ScriptableObject
     public StackTraceLogType exceptionStackTraceLogType = StackTraceLogType.Full;
     public StackTraceLogType warningStackTraceLogType = StackTraceLogType.ScriptOnly;
 
-    public SceneAsset[] sceneAssets; // シーンを設定するためのSceneAsset
+    public BuildConfigSceneItem[] sceneAssets; // シーンを設定するためのSceneAsset
 
     // シーンのパスを取得して、ビルド時に利用するメソッド
     public string[] GetScenePaths()
@@ -28,9 +30,16 @@ public class BuildConfig : ScriptableObject
         var scenePaths = new string[sceneAssets.Length];
         for (var i = 0; i < sceneAssets.Length; i++)
         {
-            scenePaths[i] = AssetDatabase.GetAssetPath(sceneAssets[i]);
+            scenePaths[i] = AssetDatabase.GetAssetPath(sceneAssets[i].sceneAsset);
         }
 
         return scenePaths;
     }
+}
+
+[Serializable]
+public struct BuildConfigSceneItem
+{
+    public SceneAsset sceneAsset;
+    public bool load;
 }

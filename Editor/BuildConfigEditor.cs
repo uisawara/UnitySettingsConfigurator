@@ -128,12 +128,12 @@ public class BuildConfigEditor : EditorWindow
         if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
         {
             // 最初のシーンは Single ロード（新規開き）
-            var firstScene = EditorSceneManager.OpenScene(scenePaths[0], OpenSceneMode.Single);
+            var firstScene = EditorSceneManager.OpenScene(scenePaths[0], OpenSceneMode.Single /* | (selectedConfig.sceneAssets[0].load? OpenSceneMode.AdditiveWithoutLoading : 0) */);
 
             // 残りは Additive（追加でロード）
             for (int i = 1; i < scenePaths.Length; i++)
             {
-                EditorSceneManager.OpenScene(scenePaths[i], OpenSceneMode.Additive);
+                EditorSceneManager.OpenScene(scenePaths[i], selectedConfig.sceneAssets[i].load? OpenSceneMode.Additive : OpenSceneMode.AdditiveWithoutLoading);
             }
 
             Debug.Log("Loaded scenes into Hierarchy");
