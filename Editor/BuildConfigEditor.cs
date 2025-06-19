@@ -72,7 +72,7 @@ public class BuildConfigEditor : EditorWindow
         }
     }
 
-    [MenuItem("Build/Build Configurator")]
+    [MenuItem("Tools/UnitySettingsConfigurator/Open build configurator window")]
     public static void ShowWindow()
     {
         GetWindow<BuildConfigEditor>("Build Configurator");
